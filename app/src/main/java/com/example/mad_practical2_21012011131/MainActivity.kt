@@ -6,50 +6,57 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet.Constraint
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
     val TAG="MainActivity"
-    val v = findViewById<ConstraintLayout>(R.id.mainlayout)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        showMessage("onCreate() method is called")
+        showMsg("onCreate() method is called")
     }
-
     override fun onStart() {
         super.onStart()
-        showMessage("onStart() method is called")
+        showMsg("onstart method is called!")
     }
 
     override fun onResume() {
         super.onResume()
-        showMessage("OnResume() method is called")
-    }
-    private fun showMessage(msg:String){
-        Log.i(TAG, "$msg")
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-        if (v!=null)
-        {
-        Snackbar.make(v,"$msg",Snackbar.LENGTH_LONG).show()
-        }
+        showMsg("onresume method is called!")
     }
 
     override fun onPause() {
         super.onPause()
-        showMessage("OnPause() method is called")
-
+        showMsg("Onpause method is called!")
     }
+
     override fun onStop() {
         super.onStop()
-        showMessage("OnStop() method is called")
-
+        showMsg("onstop method is called!")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        showMessage("OnDestroy() method is called")
+        showMsg("ondestroy method is called!")
 
     }
+
+    override fun onRestart() {
+        super.onRestart()
+        showMsg("onrestart method called!")
+    }
+    fun showMsg(message:String) {
+        Log.i(TAG, message)
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        val v  = findViewById<ConstraintLayout>(R.id.mainlayout)
+        if (v != null){
+            Snackbar.make(v,message,Snackbar.LENGTH_SHORT).show()
+        }
+
+
+    }
+
 
 }
